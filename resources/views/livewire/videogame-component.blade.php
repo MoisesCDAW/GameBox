@@ -11,7 +11,7 @@
         <div class="flex items-center justify-end p-5 bg-none">
             <button
                 class="middle none center rounded-lg bg-green-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-green-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                data-ripple-light="true" wire:click="openAddVideogame">
+                data-ripple-light="true" wire:click.prevent="openAddVideogame">
                 Add VideoGame
             </button>
         </div>
@@ -127,7 +127,7 @@
             <div class="max-h-full w-full max-w-xl overflow-y-auto sm:rounded-2xl bg-[#1F2937]">
                 <div class="w-full">
                     <div class="m-8 my-20 max-w-[400px] mx-auto">
-                        {{-- <form enctype="multipart/form-data"> --}}
+                        <form enctype="multipart/form-data">
                             <div class="mb-8">
                                 <h1 class="text-white mb-4 text-3xl font-extrabold">Add VideoGame</h1>
 
@@ -140,10 +140,10 @@
                                 <input type="file" wire:model="cover" name="cover" class="w-full p-3 bg-none text-white rounded-lg mb-4 text-sm" >
                             </div>
                             <div class="flex justify-center gap-4">
-                                <button class="p-3 text-sm bg-white rounded-full w-36 font-semibold" wire:click="addVideogame">ADD</button>
-                                <button class="p-3 text-sm bg-black rounded-full text-white w-36 font-semibold" wire:click="closeAddVideogame">CANCEL</button>
+                                <button class="p-3 text-sm bg-white rounded-full w-36 font-semibold" wire:click.prevent="addVideogame">ADD</button>
+                                <button class="p-3 text-sm bg-black rounded-full text-white w-36 font-semibold" wire:click.prevent="closeAddVideogame">CANCEL</button>
                             </div>
-                        {{-- </form> --}}
+                        </form>
                     </div>
                 </div>
             </div>

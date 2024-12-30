@@ -3,6 +3,8 @@
 namespace App\Livewire;
 
 use App\Models\Videogame;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
@@ -56,6 +58,15 @@ class VideogameComponent extends Component
 
 
     /**
+     * Mount the component
+     */
+    public function mount(){
+        $this->ownGames = $this->getOwnGames();
+        $this->otherGames = $this->getOtherGames();
+    }
+
+
+    /**
      * Add a video game to the user
      */
     public function addVideogame(){
@@ -66,6 +77,8 @@ class VideogameComponent extends Component
         $videogame->save();
         $this->clearInputs();
         $this->addGame = false;
+
+        $this->mount();
     }
 
 
@@ -82,14 +95,5 @@ class VideogameComponent extends Component
      */
     public function closeAddVideogame(){
         $this->addGame = false;
-    }
-
-
-    /**
-     * Mount the component
-     */
-    public function mount(){
-        $this->ownGames = $this->getOwnGames();
-        $this->otherGames = $this->getOtherGames();
     }
 }
