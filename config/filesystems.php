@@ -30,6 +30,13 @@ return [
 
     'disks' => [
 
+        'gameCovers' => [
+            'driver' => 'local',
+            'root' => public_path('img/gameCovers'),
+            'url' => env('APP_URL').'/img/gameCovers',
+            'visibility' => 'public',
+        ],
+
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app/private'),

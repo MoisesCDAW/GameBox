@@ -3,13 +3,13 @@
 namespace App\Livewire;
 
 use App\Models\Videogame;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class VideogameComponent extends Component
 {
+    use WithFileUploads;
 
     // The games that the user has
     public $ownGames = [];
@@ -72,12 +72,21 @@ class VideogameComponent extends Component
     public function addVideogame(){
         $videogame = new Videogame();
         $videogame->title = $this->title;
-        $videogame->cover = "img/gameCovers/cover.png";
+
+        // If the user uploaded a cover, store it
+        if ($this->cover) {
+            $path = $this->cover->storeAs('', Auth::id() . '.' . $this->cover->getClientOriginalExtension(), 'gameCovers');
+            $videogame->cover = $path;
+
+        }else {
+            $videogame->cover = "cover.png";
+        }
+
         $videogame->user_id = Auth::id();
         $videogame->save();
+
         $this->clearInputs();
         $this->addGame = false;
-
         $this->mount();
     }
 
@@ -94,6 +103,7 @@ class VideogameComponent extends Component
      * Close the page to add a video game
      */
     public function closeAddVideogame(){
+        $this->clearInputs();
         $this->addGame = false;
     }
 }

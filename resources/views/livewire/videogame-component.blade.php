@@ -11,7 +11,7 @@
         <div class="flex items-center justify-end p-5 bg-none">
             <button
                 class="middle none center rounded-lg bg-green-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-green-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                data-ripple-light="true" wire:click.prevent="openAddVideogame">
+                data-ripple-light="true" wire:click="openAddVideogame">
                 Add VideoGame
             </button>
         </div>
@@ -43,7 +43,7 @@
 
                             <div class="mx-4 overflow-hidden text-white bg-[#222d3d] bg-clip-border rounded-xl h-60 w-52">
                                 <img
-                                    src="{{$videogame->cover}}"
+                                    src="img/gameCovers/{{$videogame->cover}}"
                                     alt="card-image" class="object-cover w-full h-full" />
                             </div>
 
@@ -69,7 +69,7 @@
         <div class="h-[3px] bg-[#1F2937] my-10"></div>
 
         <h1 class="text-white text-lg font-bold mb-5" id="other-games">Other games</h1>
-        <div class="grid grid-cols-5 2xl:grid-cols-6 gap-8 gap-x-px justify-items-center">
+        <div class="grid grid-cols-5 2xl:grid-cols-6 gap-8 gap-x-px justify-items-center">  
 
             @foreach ($otherGames as $videogame)
                 {{-- Card --}}
@@ -95,7 +95,7 @@
 
                             <div class="mx-4 overflow-hidden text-white bg-[#222d3d] bg-clip-border rounded-xl h-60 w-52">
                                 <img
-                                    src="{{$videogame->cover}}"
+                                    src="img/gameCovers/{{$videogame->cover}}"
                                     alt="card-image" class="object-cover w-full h-full" />
                             </div>
 
@@ -115,7 +115,7 @@
                     </div>
                 </div>
             @endforeach
-
+            
         </div>
 
     </div>
@@ -127,7 +127,6 @@
             <div class="max-h-full w-full max-w-xl overflow-y-auto sm:rounded-2xl bg-[#1F2937]">
                 <div class="w-full">
                     <div class="m-8 my-20 max-w-[400px] mx-auto">
-                        <form enctype="multipart/form-data">
                             <div class="mb-8">
                                 <h1 class="text-white mb-4 text-3xl font-extrabold">Add VideoGame</h1>
 
@@ -143,7 +142,6 @@
                                 <button class="p-3 text-sm bg-white rounded-full w-36 font-semibold" wire:click.prevent="addVideogame">ADD</button>
                                 <button class="p-3 text-sm bg-black rounded-full text-white w-36 font-semibold" wire:click.prevent="closeAddVideogame">CANCEL</button>
                             </div>
-                        </form>
                     </div>
                 </div>
             </div>
