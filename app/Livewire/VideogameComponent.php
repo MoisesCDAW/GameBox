@@ -15,6 +15,9 @@ class VideogameComponent extends Component
     // The games that the user doesn't have
     public $otherGames = [];
 
+    // Control when to display the add video game page
+    public $addGame = false;
+
     /**
      * Render the component
      */
@@ -38,11 +41,25 @@ class VideogameComponent extends Component
         return Videogame::where('user_id', '!=', auth()->user()->id)->get();
     }
 
+    /** 
+     * Open the page to add a video game
+     */
+    public function openAddGame(){
+        $this->addGame = true;
+    }
+
+    /**
+     * Close the page to add a video game
+     */
+    public function closeAddGame(){
+        $this->addGame = false;
+    }
 
     /**
      * Mount the component
      */
     public function mount(){
         $this->ownGames = $this->getOwnGames();
+        $this->otherGames = $this->getOtherGames();
     }
 }

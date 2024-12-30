@@ -1,11 +1,21 @@
 <div class="w-full">
 
+    {{-- Nav Zone --}}
     <div class="w-full flex justify-center items-center gap-5 bg-[#1F2937] h-16">
         <a href="#own-games" class="text-white cursor-pointer text-base font-light border-b-2 border-[#1F2937] hover:border-[#3f3fb7] transition pb-1">Own Games</a>
         <a href="#other-games" class="text-white cursor-pointer text-base font-light border-b-2 border-[#1F2937] hover:border-[#3f3fb7] transition pb-1">Other Games</a>
     </div>
     
+    {{-- Content Cards --}}
     <div class="p-8">
+        <div class="flex items-center justify-end p-5 bg-none">
+            <button
+                class="middle none center rounded-lg bg-green-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-green-500/20 transition-all hover:shadow-lg hover:shadow-green-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                data-ripple-light="true" wire:click="openAddGame">
+                Add VideoGame
+            </button>
+        </div>
+
         <h1 class="text-white text-lg font-bold mb-5" id="own-games">Own games</h1>
         <div class="grid grid-cols-5 2xl:grid-cols-6 gap-8 gap-x-px justify-items-center">  
 
@@ -110,4 +120,27 @@
 
     </div>
 
+
+    {{-- Model Add Videogame --}}
+    @if ($addGame)
+        <div class="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 py-10">
+            <div class="max-h-full w-full max-w-xl overflow-y-auto sm:rounded-2xl bg-[#1F2937]">
+                <div class="w-full">
+                    <div class="m-8 my-20 max-w-[400px] mx-auto">
+                        <div class="mb-8">
+                            <h1 class="text-white mb-4 text-3xl font-extrabold">Add VideoGame</h1>
+                            <span class="text-white text-sm">New game title</span>
+                            <input type="text" placeholder="Super Mario Bros." class="w-full p-3 bg-[#222d3d] text-white rounded-lg mb-4 mt-2 placeholder:text-sm">
+                            <span class="text-white text-sm">Game cover (optional)</span>
+                            <input type="file" class="w-full p-3 bg-none text-white rounded-lg mb-4 text-sm">
+                        </div>
+                        <div class="flex justify-center gap-4">
+                            <button class="p-3 text-sm bg-white rounded-full w-36 font-semibold">ADD</button>
+                            <button class="p-3 text-sm bg-black rounded-full text-white w-36 font-semibold" wire:click="closeAddGame">CANCEL</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endif
 </div>
