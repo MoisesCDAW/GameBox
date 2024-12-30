@@ -18,11 +18,24 @@ class VideogameComponent extends Component
     // Control when to display the add video game page
     public $addGame = false;
 
+    // The title and cover of the video game
+    public $title;
+    public $cover;
+
     /**
      * Render the component
      */
     public function render(){
         return view('livewire.videogame-component');
+    }
+
+
+    /**
+     * Clear the inputs on the add video game page
+     */
+    public function clearInputs(){
+        $this->title = '';
+        $this->cover = '';
     }
 
 
@@ -38,22 +51,39 @@ class VideogameComponent extends Component
      * Get the games that the user doesn't have
      */
     public function getOtherGames(){
-        return Videogame::where('user_id', '!=', auth()->user()->id)->get();
+        return Videogame::where('user_id', '!=', Auth::id())->get();
     }
+
+
+    /**
+     * Add a video game to the user
+     */
+    public function addVideogame(){
+        $videogame = new Videogame();
+        $videogame->title = $this->title;
+        $videogame->cover = "img/gameCovers/cover.png";
+        $videogame->user_id = Auth::id();
+        $videogame->save();
+        $this->clearInputs();
+        $this->addGame = false;
+    }
+
 
     /** 
      * Open the page to add a video game
      */
-    public function openAddGame(){
+    public function openAddVideogame(){
         $this->addGame = true;
     }
+
 
     /**
      * Close the page to add a video game
      */
-    public function closeAddGame(){
+    public function closeAddVideogame(){
         $this->addGame = false;
     }
+
 
     /**
      * Mount the component
