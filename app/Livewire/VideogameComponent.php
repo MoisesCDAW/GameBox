@@ -24,6 +24,12 @@ class VideogameComponent extends Component
     public $title;
     public $cover;
 
+    // The rules for the inputs
+    protected $rules = [
+        'title' => 'required|string|min:4|max:255|regex:/^[A-Za-z0-9 ]+$/',
+        'cover' => 'image|max:5120|mimes:jpg,jpeg,png|nullable'
+    ];
+
     /**
      * Render the component
      */
@@ -70,12 +76,15 @@ class VideogameComponent extends Component
      * Add a video game to the user
      */
     public function addVideogame(){
+
+        $this->validate();
+
         $videogame = new Videogame();
         $videogame->title = $this->title;
 
         // If the user uploaded a cover, store it
         if ($this->cover) {
-            $path = $this->cover->storeAs('', Auth::id() . '.' . $this->cover->getClientOriginalExtension(), 'gameCovers');
+            $path = $this->cover->storeAs('', time() . '.' . $this->cover->getClientOriginalExtension(), 'gameCovers');
             $videogame->cover = $path;
 
         }else {
