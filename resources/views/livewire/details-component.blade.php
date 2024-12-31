@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="flex justify-center items-center h-auto">
-        <div class="bg-[#1F2937] w-[80%] sm:w-[50%] mt-10 p-5 flex-col rounded-md">
+        <div class="bg-[#1F2937] w-[80%] sm:w-[50%] mt-10 p-5 flex-col rounded-md mb-10">
             
             {{-- content-top --}}
             <div class="text-gray-700 grid grid-cols-1 sm:flex">
