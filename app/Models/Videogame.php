@@ -20,6 +20,7 @@ class Videogame extends Model
         'title',
         'description',
         'cover',
+        'user_id',
     ];
 
     /**

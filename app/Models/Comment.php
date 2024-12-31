@@ -2,11 +2,15 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Comment extends Model
 {
+    use HasFactory;
+
+
     /**
      * The attributes that are mass assignable.
      *
@@ -16,6 +20,8 @@ class Comment extends Model
         'title',
         'comment',
         'score',
+        'user_id',
+        'videogame_id',
     ];
 
     /**
