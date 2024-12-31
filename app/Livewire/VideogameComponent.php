@@ -22,11 +22,13 @@ class VideogameComponent extends Component
 
     // The title and cover of the video game
     public $title;
+    public $description;
     public $cover;
 
     // The rules for the inputs
     protected $rules = [
         'title' => 'required|string|min:4|max:255|regex:/^[A-Za-z0-9 ]+$/',
+        'description' => 'required|string|min:4|max:255|regex:/^[A-Za-z0-9 ]+$/',
         'cover' => 'image|max:5120|mimes:jpg,jpeg,png|nullable'
     ];
 
@@ -43,6 +45,7 @@ class VideogameComponent extends Component
      */
     public function clearInputs(){
         $this->title = '';
+        $this->description = '';
         $this->cover = '';
     }
 
@@ -81,6 +84,7 @@ class VideogameComponent extends Component
 
         $videogame = new Videogame();
         $videogame->title = $this->title;
+        $videogame->description = $this->description;
 
         // If the user uploaded a cover, store it
         if ($this->cover) {

@@ -18,6 +18,7 @@ class Videogame extends Model
      */
     protected $fillable = [
         'title',
+        'description',
         'cover',
     ];
 

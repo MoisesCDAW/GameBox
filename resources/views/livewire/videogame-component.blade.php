@@ -148,6 +148,14 @@
                                 @error('title') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
                                 <br><br>
 
+                                {{-- Description --}}
+                                <span class="text-white text-sm">New game description</span>
+                                <textarea wire:model="description" name="description" 
+                                    placeholder="Super Mario Bros is a classic platformer where Mario embarks on a journey to rescue Princess Peach, navigating levels filled with enemies, obstacles, and power-ups, becoming a gaming icon." 
+                                    class="w-full p-3 bg-[#222d3d] text-white rounded-lg mt-2 placeholder:text-sm h-28"></textarea>
+                                @error('title') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                                <br><br>
+
                                 {{-- Cover --}}
                                 <span class="text-white text-sm">Game cover (optional)</span>
                                 <input type="file" wire:model="cover" name="cover" class="w-full p-3 bg-none text-white rounded-lg text-sm">
