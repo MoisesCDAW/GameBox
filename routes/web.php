@@ -15,7 +15,7 @@ Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
 
-Route::get('/{id}', DetailsComponent::class)
+Route::get('/videogame/{id}', DetailsComponent::class)
     ->middleware(['auth'])
     ->name('details.videogame');
     

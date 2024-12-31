@@ -17,7 +17,6 @@ class Comment extends Model
      * @var list<string>
      */
     protected $fillable = [
-        'title',
         'comment',
         'score',
         'user_id',
