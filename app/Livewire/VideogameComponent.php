@@ -119,4 +119,9 @@ class VideogameComponent extends Component
         $this->clearInputs();
         $this->addGame = false;
     }
+
+
+    public function redirectToDetails($id){
+        return redirect()->route('details.videogame', ['id' => $id]);
+    }
 }

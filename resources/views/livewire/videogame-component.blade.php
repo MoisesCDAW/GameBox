@@ -53,7 +53,7 @@
                                     type="button">
                                     Comment
                                 </button>
-                                <a href="{{ route('details.videogame', ['id' => $videogame->id, 'owner' => 1]) }}"
+                                <a href="{{ route('details.videogame', ['id' => $videogame->id]) }}"
                                     class="border-2 border-[#222d3d] hover:border-gray-300 font-sans font-bold text-center disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 rounded-lg shadow-gray-900/10 hover:shadow-gray-900/20 active:opacity-[0.85] active:shadow-none block w-full bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:shadow-none focus:shadow-none">
                                     <button
                                         class="uppercase"
@@ -108,14 +108,11 @@
                                     type="button">
                                     Comment
                                 </button>
-                                <a href="{{ route('details.videogame', ['id' => $videogame->id, 'owner' => 0]) }}"
-                                    class="border-2 border-[#222d3d] hover:border-gray-300 font-sans font-bold text-center disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 rounded-lg shadow-gray-900/10 hover:shadow-gray-900/20 active:opacity-[0.85] active:shadow-none block w-full bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:shadow-none focus:shadow-none">
-                                    <button
-                                        class="uppercase"
-                                        type="button">
-                                        Details
-                                    </button>
-                                </a>
+                                <button
+                                    class="border-2 uppercase border-[#222d3d] hover:border-gray-300 font-sans font-bold text-center disabled:opacity-50 disabled:shadow-none disabled:pointer-events-none text-xs py-2 rounded-lg shadow-gray-900/10 hover:shadow-gray-900/20 active:opacity-[0.85] active:shadow-none block w-full bg-blue-gray-900/10 text-blue-gray-900 shadow-none hover:shadow-none focus:shadow-none"
+                                    type="button" wire:click="redirectToDetails({{$videogame->id}})">
+                                    Details
+                                </button>
                             </div>
                         </div>
                     </div>
