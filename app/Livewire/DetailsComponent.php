@@ -158,6 +158,10 @@ class DetailsComponent extends Component
         return redirect()->to('dashboard');
     }
 
+    // Redirect to the home page
+    public function backToHome(){
+        return redirect()->to('dashboard');
+    }
 
     /**
      * Render the component
