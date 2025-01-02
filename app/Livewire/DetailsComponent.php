@@ -134,6 +134,8 @@ class DetailsComponent extends Component
             ]
         );
 
+        $this->js("setTimeout(() => {alert('Video game edited successfully.')}, 200);");
+
         // Close the modal and refresh the details
         $this->editModal = false;
         $this->getVideogameDetails();

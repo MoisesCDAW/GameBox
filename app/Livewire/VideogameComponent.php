@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Models\Comment;
 use App\Models\Videogame;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -17,20 +18,32 @@ class VideogameComponent extends Component
     // The games that the user doesn't have
     public $otherGames = [];
 
-    // Control when to display the add video game page
+    // Control when to display the models
     public $addGame = false;
+    public $addRate = false;
 
-    // The title and cover of the video game
+    // New game parameters
     public $title;
     public $description;
     public $cover;
 
-    // The rules for the inputs
-    protected $rules = [
+    // Game rating parameters
+    public $score = 3;
+    public $comment = "";
+    public $videogame_id;
+
+    // The rules for the inputs "AddGame"
+    protected $rulesAddGame = [
         'title' => 'required|string|min:4|max:255|regex:/^[A-Za-z0-9 ]+$/',
         'description' => 'required|string|min:4|max:255|regex:/^[A-Za-z0-9 ]+$/',
-        'cover' => 'image|max:5120|mimes:jpg,jpeg,png|nullable'
+        'cover' => 'image|max:5120|mimes:jpg,jpeg,png|nullable',
     ];
+
+    // The rules for the inputs "AddRate"
+    protected $rulesAddRate = [
+        'comment' => 'string|min:4|max:255|regex:/^[A-Za-z0-9 ]+$/',
+    ];
+
 
     /**
      * Render the component
@@ -43,10 +56,18 @@ class VideogameComponent extends Component
     /**
      * Clear the inputs on the add video game page
      */
-    public function clearInputs(){
+    public function clearInputsAddGame(){
         $this->title = '';
         $this->description = '';
         $this->cover = '';
+    }
+
+
+    /**
+     * Clear the inputs on the add video game page
+     */
+    public function clearInputsAddRate(){
+        $this->comment = '';
     }
 
 
@@ -80,7 +101,7 @@ class VideogameComponent extends Component
      */
     public function addVideogame(){
 
-        $this->validate();
+        $this->validate($this->rulesAddGame);
 
         $videogame = new Videogame();
         $videogame->title = $this->title;
@@ -98,7 +119,9 @@ class VideogameComponent extends Component
         $videogame->user_id = Auth::id();
         $videogame->save();
 
-        $this->clearInputs();
+        $this->js("setTimeout(() => {alert('Video game added successfully.')}, 200);");
+
+        $this->clearInputsAddGame();
         $this->addGame = false;
         $this->mount();
     }
@@ -116,12 +139,62 @@ class VideogameComponent extends Component
      * Close the page to add a video game
      */
     public function closeAddVideogame(){
-        $this->clearInputs();
+        $this->clearInputsAddGame();
         $this->addGame = false;
     }
 
-
+    
+    /**
+     * Redirect to the details page of a video game
+     */
     public function redirectToDetails($id){
         return redirect()->route('details.videogame', ['id' => $id]);
     }
+
+
+    /**
+     * Open the page to add a rate to a video game
+     */
+    public function openAddRate($videogame_id){
+        $this->addRate = true;
+        $this->videogame_id = $videogame_id;
+    }
+
+
+    /**
+     * Close the page to add a rate to a video game
+     */
+    public function closeAddRate(){
+        $this->clearInputsAddRate();
+        $this->addRate = false;
+    }
+
+
+    /**
+     * Select a score for a video game
+     */
+    public function selectScore($score){
+        $this->score = $score;
+    }
+
+
+    /**
+     * Add a rate to a video game
+     */
+    public function addNewRate(){
+
+        $this->validate($this->rulesAddRate);
+
+        $comment = new Comment();
+        $comment->comment = $this->comment;
+        $comment->score = $this->score;
+        $comment->user_id = Auth::id();
+        $comment->videogame_id = $this->videogame_id;
+        $comment->save();
+
+        $this->js("setTimeout(() => {alert('The rating was done correctly.')}, 200);");
+
+        $this->clearInputsAddRate();
+        $this->addRate = false;
+    } 
 }
