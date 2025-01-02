@@ -5,28 +5,34 @@
         <div class="text-gray-700 grid grid-cols-1 sm:flex">
             
             {{-- Cover --}}
-            <div class="overflow-hidden bg-[#1F2937] text-gray-700 shadow-lg m-0 min-h-[300px] sm:min-w-[250px] sm:min-h-[300px] mb-5 sm:mb-0">
-                <img src="../img/gameCovers/{{ $videogameCover }}" alt="Revolutionizing Our Production Process" class="object-cover w-full h-full rounded-md"/>
+            <div class="overflow-hidden bg-[#1F2937] text-gray-700 shadow-lg m-0 mb-5 sm:mb-0">
+                <img src="../img/gameCovers/{{ $videogameCover }}" alt="Revolutionizing Our Production Process" class="object-cover w-[300px] h-[350px] rounded-md"/>
             </div>
 
             {{-- Title and description --}}
-            <div class="sm:pr-6 sm:pl-4 sm:ms-4 flex flex-col justify-center">
+            <div class="sm:pr-6 sm:pl-4 sm:ms-4 flex flex-col justify-center max-w-[60%]">
                 {{-- <p class="block antialiased font-sans text-sm font-light leading-normal text-inherit mb-4">Technology</p> --}}
                 <p class="block antialiased tracking-normal font-sans text-xl font-semibold leading-snug text-white mb-2 normal-case">{{ $videogameTitle }}</p>
                 <p class="block antialiased font-sans leading-relaxed mb-8 font-normal text-gray-500">{{ $videogameDescription }}</p>
 
                 {{-- Actions --}}
                 <div class="flex gap-4">
-                    <button
-                        class="middle none center rounded-lg bg-orange-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-orange-500/20 transition-all hover:shadow-lg hover:shadow-orange-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                        data-ripple-light="true">
-                        Edit
-                    </button>
-                    <button
-                        class="middle none center mr-4 rounded-lg bg-red-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-red-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                        data-ripple-light="true">
-                        Delete
-                    </button>
+
+                    @if ( $this->isOwner() || $role == 'admin' )
+                        <button
+                            class="middle none center rounded-lg bg-orange-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-orange-500/20 transition-all hover:shadow-lg hover:shadow-orange-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                            data-ripple-light="true">
+                            Edit
+                        </button>
+                    @endif
+
+                    @if ( $role == 'admin' )
+                        <button
+                            class="middle none center mr-4 rounded-lg bg-red-500 py-3 px-6 font-sans text-xs font-bold uppercase text-white shadow-md shadow-red-500/20 transition-all hover:shadow-lg hover:shadow-red-500/40 focus:opacity-[0.85] focus:shadow-none active:opacity-[0.85] active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                            data-ripple-light="true">
+                            Delete
+                        </button>
+                    @endif
                 </div>
             </div>
         </div>
