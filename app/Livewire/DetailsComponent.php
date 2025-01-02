@@ -141,6 +141,25 @@ class DetailsComponent extends Component
 
 
     /**
+     * Delete the video game.
+     */
+    public function deleteVideogame(){
+        $videogame = Videogame::where('id', $this->videogame_id)->first();
+
+        // Delete the cover
+        if($videogame->cover != "cover.png"){
+            unlink(public_path('img/gameCovers/' . $videogame->cover));
+        }
+
+        // Delete the video game
+        $videogame->delete();
+
+        // Redirect to the home page
+        return redirect()->to('dashboard');
+    }
+
+
+    /**
      * Render the component
      */
     public function render(){
