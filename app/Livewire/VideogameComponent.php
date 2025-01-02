@@ -100,7 +100,6 @@ class VideogameComponent extends Component
      * Add a video game to the user
      */
     public function addVideogame(){
-
         $this->validate($this->rulesAddGame);
 
         $videogame = new Videogame();

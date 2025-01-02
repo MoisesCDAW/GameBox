@@ -1,7 +1,7 @@
 <div class="w-full" id="inicio">
 
     {{-- Up Button --}}
-    <div class="fixed top-[80%] left-[50%] z-50" id="volArriba">
+    <div class="fixed top-[80%] left-[50%] z-40" id="volArriba">
         <a class='flex bg-white rounded-3xl p-4 justify-center cursor-pointer' href='#inicio'>
             <div class='flex items-center justify-between flex-1'>
                 <svg width='12' height='12' viewBox='0 0 17 17' xmlns='http://www.w3.org/2000/svg' style="transform: rotate(270deg);">
@@ -139,43 +139,43 @@
 
     {{-- Add Videogame Model --}}
     @if ($addGame)
-        <div class="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 py-10">
+        <div class="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 py-10 z-50">
             <div class="max-h-full w-full max-w-xl overflow-y-auto sm:rounded-2xl bg-[#1F2937]">
                 <div class="w-full">
                     <div class="m-8 my-20 max-w-[400px] mx-auto">
-                            <div class="mb-8">
-                                <h1 class="text-white mb-4 text-3xl font-extrabold">Add VideoGame</h1>
+                        <div class="mb-8">
+                            <h1 class="text-white mb-4 text-3xl font-extrabold">Add VideoGame</h1>
 
-                                <div wire:loading wire:target="cover" class="flex bg-blue-100 rounded-lg p-4 mb-4 text-sm text-blue-700" role="alert">
-                                    <svg class="w-5 h-5 inline mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg> 
-                                    Wait for the image to finish loading to continue.
-                                </div>
-                                <br>
-
-                                {{-- Title --}}
-                                <span class="text-white text-sm">New game title</span>
-                                <input type="text" wire:model="title" placeholder="Super Mario Bros." class="w-full p-3 bg-[#222d3d] text-white rounded-lg mt-2 placeholder:text-sm">
-                                @error('title') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                                <br><br>
-
-                                {{-- Description --}}
-                                <span class="text-white text-sm">New game description</span>
-                                <textarea wire:model="description"
-                                    placeholder="Super Mario Bros is a classic platformer where Mario embarks on a journey to rescue Princess Peach, navigating levels filled with enemies, obstacles, and power-ups, becoming a gaming icon." 
-                                    class="w-full p-3 bg-[#222d3d] text-white rounded-lg mt-2 placeholder:text-sm h-28"></textarea>
-                                @error('description') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                                <br><br>
-
-                                {{-- Cover --}}
-                                <span class="text-white text-sm">Game cover (optional)</span>
-                                <input type="file" wire:model="cover" class="w-full p-3 bg-none text-white rounded-lg text-sm">
-                                @error('cover') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-                                
+                            <div wire:loading wire:target="cover" class="flex bg-blue-100 rounded-lg p-4 mb-4 text-sm text-blue-700" role="alert">
+                                <svg class="w-5 h-5 inline mr-3" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg> 
+                                Wait for the image to finish loading to continue.
                             </div>
-                            <div class="flex justify-center gap-4">
-                                <button class="p-3 text-sm bg-white rounded-full w-36 font-semibold" wire:click.prevent="addVideogame" wire:loading.attr="disabled" wire:target="cover">ADD</button>
-                                <button class="p-3 text-sm bg-black rounded-full text-white w-36 font-semibold" wire:click.prevent="closeAddVideogame">CANCEL</button>
-                            </div>
+                            <br>
+
+                            {{-- Title --}}
+                            <span class="text-white text-sm">New game title</span>
+                            <input type="text" wire:model="title" placeholder="Super Mario Bros." class="w-full p-3 bg-[#222d3d] text-white rounded-lg mt-2 placeholder:text-sm">
+                            @error('title') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                            <br><br>
+
+                            {{-- Description --}}
+                            <span class="text-white text-sm">New game description</span>
+                            <textarea wire:model="description"
+                                placeholder="Super Mario Bros is a classic platformer where Mario embarks on a journey to rescue Princess Peach, navigating levels filled with enemies, obstacles, and power-ups, becoming a gaming icon." 
+                                class="w-full p-3 bg-[#222d3d] text-white rounded-lg mt-2 placeholder:text-sm h-28"></textarea>
+                            @error('description') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                            <br><br>
+
+                            {{-- Cover --}}
+                            <span class="text-white text-sm">Game cover (optional)</span>
+                            <input type="file" wire:model="cover" class="w-full p-3 bg-none text-white rounded-lg text-sm">
+                            @error('cover') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
+                            
+                        </div>
+                        <div class="flex justify-center gap-4">
+                            <button class="p-3 text-sm bg-white rounded-full w-36 font-semibold" wire:click.prevent="addVideogame" wire:loading.attr="disabled" wire:target="cover">ADD</button>
+                            <button class="p-3 text-sm bg-black rounded-full text-white w-36 font-semibold" wire:click.prevent="closeAddVideogame">CANCEL</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -185,7 +185,7 @@
 
     {{-- Add Rate Model --}}
     @if ($addRate)
-        <div class="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 py-10">
+        <div class="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 py-10 z-50">
             <div class="max-h-full w-full max-w-xl overflow-y-auto sm:rounded-2xl bg-[#1F2937]">
                 <div class="w-full">
                     <div class="m-8 my-20 max-w-[400px] mx-auto">
