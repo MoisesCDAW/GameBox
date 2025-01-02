@@ -47,6 +47,14 @@ class DetailsComponent extends Component
         $this->comments = Comment::where('videogame_id', $videogame->id)->get();
     }
 
+    /**
+     * Get the name of the user who made the comment.
+     */
+    public function getUserName($id){
+        $user = User::find($id);
+        return $user->name;
+    }
+
 
     /**
      * Mount the component
