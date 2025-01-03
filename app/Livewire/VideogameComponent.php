@@ -2,9 +2,11 @@
 
 namespace App\Livewire;
 
+use App\Mail\addGameMail;
 use App\Models\Comment;
 use App\Models\Videogame;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -119,6 +121,8 @@ class VideogameComponent extends Component
         $videogame->save();
 
         $this->js("setTimeout(() => {alert('Video game added successfully.')}, 200);");
+
+        Mail::to("admin@gmail.com")->send(new addGameMail($videogame));
 
         $this->clearInputsAddGame();
         $this->addGame = false;
