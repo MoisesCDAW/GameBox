@@ -2,6 +2,7 @@
 
 namespace App\Livewire;
 
+use App\Jobs\addGameMailJob;
 use App\Mail\addGameMail;
 use App\Models\Comment;
 use App\Models\Videogame;
@@ -122,7 +123,7 @@ class VideogameComponent extends Component
 
         $this->js("setTimeout(() => {alert('Video game added successfully.')}, 200);");
 
-        Mail::to("admin@gmail.com")->send(new addGameMail($videogame));
+        dispatch(new addGameMailJob($videogame));
 
         $this->clearInputsAddGame();
         $this->addGame = false;

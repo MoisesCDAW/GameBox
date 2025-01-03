@@ -19,7 +19,7 @@ class VideogameFactory extends Factory
     {
         return [
             'title' => fake()->sentence(3),
-            'description' => fake()->sentence(25),
+            'description' => fake()->sentence(20),
             'cover' => "cover.png",
             'user_id' => 1, 
             'created_at' => now(),
