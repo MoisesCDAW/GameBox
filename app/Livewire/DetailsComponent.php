@@ -30,6 +30,13 @@ class DetailsComponent extends Component
 
     // Control when to display the modal to edit the video game.
     public $editModal = false;
+
+    // The rules for the inputs "EditVideogame"
+    protected $rulesEditVideogame = [
+        'videogameTitle' => 'required|string|min:4|max:255|regex:/^[A-Za-z0-9¿?¡!.()\s]+$/',
+        'videogameDescription' => 'required|string|min:4|max:255|regex:/^[a-zA-Z0-9¿?¡!.()\s]+$/',
+        'videogameCover' => 'image|max:5120|mimes:jpg,jpeg,png|nullable',
+    ];
     
     /**
      * Get the details of the user
@@ -138,6 +145,14 @@ class DetailsComponent extends Component
      */
     public function editVideogame(){
         $videogame = Videogame::where('id', $this->videogame_id)->first();
+
+        // If the user did not upload a cover, the previous cover is maintained.
+        if ($this->videogameCover === $videogame->cover) {
+            $this->rulesEditVideogame['videogameCover'] = '';
+        }
+
+        $this->validate($this->rulesEditVideogame);
+
         $videogame->title = $this->videogameTitle;
         $videogame->description = $this->videogameDescription;
         $cover = $videogame->cover;

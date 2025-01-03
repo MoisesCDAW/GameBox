@@ -37,14 +37,14 @@ class VideogameComponent extends Component
 
     // The rules for the inputs "AddGame"
     protected $rulesAddGame = [
-        'title' => 'required|string|min:4|max:255|regex:/^[A-Za-z0-9 ]+$/',
-        'description' => 'required|string|min:4|max:255|regex:/^[A-Za-z0-9 ]+$/',
+        'title' => 'required|string|min:4|max:255|regex:/^[A-Za-z0-9¿?¡!.()\s]+$/',
+        'description' => 'required|string|min:4|max:255|regex:/^[a-zA-Z0-9¿?¡!.()\s]+$/',
         'cover' => 'image|max:5120|mimes:jpg,jpeg,png|nullable',
     ];
 
     // The rules for the inputs "AddRate"
     protected $rulesAddRate = [
-        'comment' => 'string|min:4|max:255|regex:/^[A-Za-z0-9 ]+$/',
+        'comment' => 'string|min:4|max:255|regex:/^[a-zA-Z0-9¿?¡!.()\s]+$/',
     ];
 
 
