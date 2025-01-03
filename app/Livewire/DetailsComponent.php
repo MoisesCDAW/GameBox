@@ -26,6 +26,8 @@ class DetailsComponent extends Component
     public $videogameCover;
     public $comments = [];
 
+    public $wirePoll = true; 
+
     // Control when to display the modal to edit the video game.
     public $editModal = false;
     
@@ -34,6 +36,12 @@ class DetailsComponent extends Component
      */
     public function getUserDetails(){
         $user = User::where('id', Auth::id())->first();
+
+        if(!$user){
+            $this->wirePoll = false;
+            return redirect()->to('dashboard');
+        }
+
         $this->userName = $user->name;
         $this->role = $user->role;
     }
@@ -44,6 +52,12 @@ class DetailsComponent extends Component
      */
     public function getVideogameDetails(){
         $videogame = Videogame::where('id', $this->videogame_id)->first();
+
+        if(!$videogame){
+            $this->wirePoll = false;
+            return redirect()->to('dashboard');
+        }
+
         $this->videogameTitle = $videogame->title;
         $this->videogameDescription = $videogame->description;
         $this->videogameCover = $videogame->cover;
@@ -79,15 +93,23 @@ class DetailsComponent extends Component
      * Open the modal to edit the video game.
      */
     public function OpenEditVideogame(){
-        $this->editModal = true;
+        if (Videogame::where('id', $this->videogame_id)->first()) {
+            $this->wirePoll = false;
+            $this->editModal = true;
+        }else {
+            return redirect()->to('dashboard');
+        }
     }
 
     /**
      * Close the modal to edit the video game.
      */
     public function CloseEditVideogame(){
-        $videogame = Videogame::where('id', $this->videogame_id)->first();
+        $this->wirePoll = true;
         $this->editModal = false;
+
+        // It allows retrieving the game's cover.
+        $videogame = Videogame::where('id', $this->videogame_id)->first();
         $this->videogameCover = $videogame->cover;
     }
 
@@ -97,6 +119,15 @@ class DetailsComponent extends Component
      */
     public function mount($id){
         $this->videogame_id = $id;        
+        $this->getUserDetails();
+        $this->getVideogameDetails();
+    }
+
+
+    /**
+     * It allows keeping each user's "Details" pages synchronized.
+     */
+    public function renderDetails(){   
         $this->getUserDetails();
         $this->getVideogameDetails();
     }
@@ -135,6 +166,7 @@ class DetailsComponent extends Component
         );
 
         // Close the modal and refresh the details
+        $this->wirePoll = true;
         $this->editModal = false;
         $this->getVideogameDetails();
     }
@@ -144,9 +176,11 @@ class DetailsComponent extends Component
      * Delete the video game.
      */
     public function deleteVideogame(){
+        $this->wirePoll = false;
+
         $videogame = Videogame::where('id', $this->videogame_id)->first();
 
-        // Delete the cover
+        // Delete the cover of the video game
         if($videogame->cover != "cover.png"){
             unlink(public_path('img/gameCovers/' . $videogame->cover));
         }
