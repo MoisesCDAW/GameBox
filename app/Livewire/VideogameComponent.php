@@ -100,6 +100,15 @@ class VideogameComponent extends Component
 
 
     /**
+     * Mount the component
+     */
+    public function renderVideogames(){
+        $this->ownGames = $this->getOwnGames();
+        $this->otherGames = $this->getOtherGames();
+    }
+
+
+    /**
      * Add a video game to the user
      */
     public function addVideogame(){
@@ -149,7 +158,7 @@ class VideogameComponent extends Component
 
     
     /**
-     * Redirect to the details page of a video game
+     * It allows keeping each user's "Dashboard" pages synchronized.
      */
     public function redirectToDetails($id){
         return redirect()->route('details.videogame', ['id' => $id]);

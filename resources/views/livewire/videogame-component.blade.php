@@ -1,17 +1,4 @@
-<div class="w-full" id="inicio">
-
-    {{-- Up Button --}}
-    <div class="fixed top-[80%] left-[50%] z-40" id="volArriba">
-        <a class='flex bg-white rounded-3xl p-4 justify-center cursor-pointer' href='#inicio'>
-            <div class='flex items-center justify-between flex-1'>
-                <svg width='12' height='12' viewBox='0 0 17 17' xmlns='http://www.w3.org/2000/svg' style="transform: rotate(270deg);">
-                    <path fillRule='evenodd' clipRule='evenodd'
-                    d='M0 8.71423C0 8.47852 0.094421 8.25246 0.262491 8.08578C0.430562 7.91911 0.658514 7.82547 0.896201 7.82547H13.9388L8.29808 2.23337C8.12979 2.06648 8.03525 1.84013 8.03525 1.60412C8.03525 1.36811 8.12979 1.14176 8.29808 0.974875C8.46636 0.807989 8.6946 0.714233 8.93259 0.714233C9.17057 0.714233 9.39882 0.807989 9.5671 0.974875L16.7367 8.08499C16.8202 8.16755 16.8864 8.26562 16.9316 8.3736C16.9767 8.48158 17 8.59733 17 8.71423C17 8.83114 16.9767 8.94689 16.9316 9.05487C16.8864 9.16284 16.8202 9.26092 16.7367 9.34348L9.5671 16.4536C9.39882 16.6205 9.17057 16.7142 8.93259 16.7142C8.6946 16.7142 8.46636 16.6205 8.29808 16.4536C8.12979 16.2867 8.03525 16.0604 8.03525 15.8243C8.03525 15.5883 8.12979 15.362 8.29808 15.1951L13.9388 9.603H0.896201C0.658514 9.603 0.430562 9.50936 0.262491 9.34268C0.094421 9.17601 0 8.94995 0 8.71423Z'
-                    fill='#000'/>
-                </svg>
-            </div>
-        </a>
-    </div>
+<div class="w-full" id="inicio" wire:poll="renderVideogames">
 
     {{-- Nav Zone --}}
     <div class="w-full flex justify-center items-center gap-5 bg-[#1F2937] h-16">
@@ -225,51 +212,3 @@
         </div>
     @endif
 </div>
-
-<script>
-    
-    /**
-     * This function is used to show the button to go up when the user scrolls down the page.
-     */
-    function estilos_volverArriba() {
-        let base = document.querySelector("#volArriba");
-        let svg = base.querySelector("svg");
-
-        base.classList.add(
-            "w-10",
-            "h-10",
-            "fixed",
-            "right-10",
-            "min-[880px]:inset-x-[50%]",
-            "bottom-24",
-            "transition",
-            "duration-[400ms]",
-            "ease-in-out",
-            "opacity-0",
-        );
-
-        svg.classList.add(
-            "opacity-0",
-            "w-10",
-            "transition",
-            "duration-[400ms]",
-            "ease-in-out",
-        );
-
-        window.addEventListener("scroll", function() {
-            if (window.scrollY > 500) {
-                base.classList.remove("opacity-0");
-                base.classList.add("opacity-100");
-                svg.classList.remove("opacity-0");
-                svg.classList.add("opacity-100");
-            }else {
-                base.classList.remove("opacity-100");
-                base.classList.add("opacity-0");
-                svg.classList.remove("opacity-100");
-                svg.classList.add("opacity-0");
-            }
-        });
-    }
-
-    estilos_volverArriba();
-</script>
