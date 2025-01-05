@@ -75,6 +75,7 @@ new #[Layout('layouts.guest')] class extends Component
 }; ?>
 
 <div>
+    
     <form wire:submit="resetPassword">
         <!-- Email Address -->
         <div>

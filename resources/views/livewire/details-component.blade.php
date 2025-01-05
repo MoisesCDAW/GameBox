@@ -1,4 +1,5 @@
 <div class="flex justify-center items-center h-auto" @if($wirePoll) wire:poll="renderDetails" @endif>
+    {{-- <div class="flex justify-center items-center h-auto"> --}}
 
     {{-- Back Button --}}
     <div class="absolute top-[100px] left-16">

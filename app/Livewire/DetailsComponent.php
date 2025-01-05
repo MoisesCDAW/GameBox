@@ -146,44 +146,48 @@ class DetailsComponent extends Component
     public function editVideogame(){
         $videogame = Videogame::where('id', $this->videogame_id)->first();
 
-        // If the user did not upload a cover, the previous cover is maintained.
-        if ($this->videogameCover === $videogame->cover) {
-            $this->rulesEditVideogame['videogameCover'] = '';
-        }
-
-        $this->validate($this->rulesEditVideogame);
-
-        $videogame->title = $this->videogameTitle;
-        $videogame->description = $this->videogameDescription;
-        $cover = $videogame->cover;
-
-        // If the user uploaded a cover, store it and delete the previous one
-        if ($this->videogameCover != $cover) {
-
-            // Delete the previous cover
-            if($cover != "cover.png"){
-                unlink(public_path('img/gameCovers/' . $cover));
+        if ($videogame) {
+                    // If the user did not upload a cover, the previous cover is maintained.
+            if ($this->videogameCover === $videogame->cover) {
+                $this->rulesEditVideogame['videogameCover'] = '';
             }
 
-            // Store the new cover
-            $path = $this->videogameCover->storeAs('', time() . '.' . $this->videogameCover->getClientOriginalExtension(), 'gameCovers');
-            $cover = $path;
+            $this->validate($this->rulesEditVideogame);
 
+            $videogame->title = $this->videogameTitle;
+            $videogame->description = $this->videogameDescription;
+            $cover = $videogame->cover;
+
+            // If the user uploaded a cover, store it and delete the previous one
+            if ($this->videogameCover != $cover) {
+
+                // Delete the previous cover
+                if($cover != "cover.png"){
+                    unlink(public_path('img/gameCovers/' . $cover));
+                }
+
+                // Store the new cover
+                $path = $this->videogameCover->storeAs('', time() . '.' . $this->videogameCover->getClientOriginalExtension(), 'gameCovers');
+                $cover = $path;
+
+            }
+
+            // Update the video game
+            $videogame->update(
+                [
+                    'title' => $this->videogameTitle,
+                    'description' => $this->videogameDescription,
+                    'cover' => $cover
+                ]
+            );
+
+            // Close the modal and refresh the details
+            $this->wirePoll = true;
+            $this->editModal = false;
+            $this->getVideogameDetails();
+        }else {
+            return redirect()->to('dashboard');
         }
-
-        // Update the video game
-        $videogame->update(
-            [
-                'title' => $this->videogameTitle,
-                'description' => $this->videogameDescription,
-                'cover' => $cover
-            ]
-        );
-
-        // Close the modal and refresh the details
-        $this->wirePoll = true;
-        $this->editModal = false;
-        $this->getVideogameDetails();
     }
 
 

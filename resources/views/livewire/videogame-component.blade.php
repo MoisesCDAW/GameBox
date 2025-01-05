@@ -1,4 +1,5 @@
 <div class="w-full" id="inicio" wire:poll="renderVideogames">
+{{-- <div class="w-full" id="inicio"> --}}
 
     {{-- Nav Zone --}}
     <div class="w-full flex justify-center items-center gap-5 bg-[#1F2937] h-16">

@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
+use function Livewire\Volt\js;
+
 class VideogameComponent extends Component
 {
     use WithFileUploads;
