@@ -15,11 +15,11 @@
 
 <strong>Datos para env.mail:</strong>
 
-`MAIL_MAILER=smtp` <br>
-`MAIL_SCHEME=null` <br>
-`MAIL_HOST=sandbox.smtp.mailtrap.io` <br>
-`MAIL_PORT=2525` <br>
-`MAIL_USERNAME=676a1cefa38a45` <br>
-`MAIL_PASSWORD=fc52fb92d95fab` <br>
-`MAIL_FROM_ADDRESS="gamebox@email.com"` <br>
-`MAIL_FROM_NAME="GameBox"` <br>
+`MAIL_MAILER=smtp`<br>
+`MAIL_SCHEME=null`<br>
+`MAIL_HOST=sandbox.smtp.mailtrap.io`<br>
+`MAIL_PORT=2525`<br>
+`MAIL_USERNAME=676a1cefa38a45`<br>
+`MAIL_PASSWORD=fc52fb92d95fab`<br>
+`MAIL_FROM_ADDRESS="gamebox@email.com"`<br>
+`MAIL_FROM_NAME="GameBox"`<br>
