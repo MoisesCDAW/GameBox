@@ -1,4 +1,4 @@
-<div class="flex justify-center items-center h-auto" @if($wirePoll) wire:poll="renderDetails" @endif>
+<div class="flex justify-center items-center h-auto" @if($wirePoll) wire:poll.10s="renderDetails" @endif>
     {{-- <div class="flex justify-center items-center h-auto"> --}}
 
     {{-- Back Button --}}

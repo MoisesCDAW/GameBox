@@ -1,4 +1,4 @@
-<div class="w-full" id="inicio" wire:poll="renderVideogames">
+<div class="w-full" id="inicio" wire:poll.10s="renderVideogames">
 {{-- <div class="w-full" id="inicio"> --}}
 
     {{-- Nav Zone --}}
