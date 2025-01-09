@@ -171,8 +171,16 @@ class VideogameComponent extends Component
      * Open the page to add a rate to a video game
      */
     public function openAddRate($videogame_id){
-        $this->addRate = true;
-        $this->videogame_id = $videogame_id;
+        $rate = Comment::where('videogame_id', $videogame_id)
+        ->where('user_id', Auth::id())
+        ->first();
+
+        if (!$rate) {
+            $this->addRate = true;
+            $this->videogame_id = $videogame_id;
+        }else {
+            $this->js("alert('Already rated game')");
+        }
     }
 
 
