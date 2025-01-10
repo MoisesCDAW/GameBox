@@ -18,14 +18,14 @@
         </div>
 
         <h1 class="text-white text-lg font-bold mb-5" id="own-games">Own games</h1>
-        <div class="grid grid-cols-5 2xl:grid-cols-6 gap-8 gap-x-px justify-items-center">  
+        <div class="grid grid-cols-2 lg:grid-cols-5 2xl:grid-cols-6 gap-8 lg:gap-8 lg:gap-x-px justify-items-center">  
 
             @foreach ($ownGames as $videogame)
                 {{-- Card --}}
-                <div>
+                <div class="">
                     <div>
                         <!-- Centering wrapper -->
-                        <div class="relative flex flex-col text-white bg-[#222d3d] shadow-md bg-clip-border rounded-xl w-60">
+                        <div class="relative flex flex-col text-white bg-[#222d3d] shadow-md bg-clip-border rounded-xl w-40 lg:w-60">
 
                             <div class="px-6 my-4">
                                 <div class="flex items-center justify-between">
@@ -42,7 +42,7 @@
                                 </p> -->
                             </div>
 
-                            <div class="mx-4 overflow-hidden text-white bg-[#222d3d] bg-clip-border rounded-xl h-60 w-52">
+                            <div class="mx-4 overflow-hidden text-white bg-[#222d3d] bg-clip-border rounded-xl lg:h-60 lg:w-52">
                                 <img
                                     src="img/gameCovers/{{$videogame->cover}}"
                                     alt="card-image" class="object-cover w-full h-full" />
@@ -131,7 +131,7 @@
     {{-- Add Videogame Model --}}
     @if ($addGame)
         <div class="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 py-10 z-50">
-            <div class="max-h-full w-full max-w-xl overflow-y-auto sm:rounded-2xl bg-[#1F2937]">
+            <div class="max-h-full w-full max-w-xl overflow-y-auto sm:rounded-2xl bg-[#1F2937] px-8 lg:px-0">
                 <div class="w-full">
                     <div class="m-8 my-20 max-w-[400px] mx-auto">
                         <div class="mb-8">
@@ -177,7 +177,7 @@
     {{-- Add Rate Model --}}
     @if ($addRate)
         <div class="fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 py-10 z-50">
-            <div class="max-h-full w-full max-w-xl overflow-y-auto sm:rounded-2xl bg-[#1F2937]">
+            <div class="max-h-full w-full max-w-xl overflow-y-auto sm:rounded-2xl bg-[#1F2937] px-8 lg:px-0">
                 <div class="w-full">
                     <div class="m-8 my-20 max-w-[400px] mx-auto">
                         <div class="mb-8">
